@@ -1,0 +1,12 @@
+.administration-container {
+    padding: 5%;
+}
+
+.admin-item {
+    padding-top: 10%;
+}
+
+.admin-item a {
+    margin-left: 5%;
+    margin-top: -0.5%;
+}
