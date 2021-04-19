@@ -1,3 +1,5 @@
+MOIS projekt - PicknGo - bageta na míru. Webová SPA aplikace pro zaměstnance a administrátora systému.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
