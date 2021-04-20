@@ -28,9 +28,9 @@ class RegisterPage extends Component {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-              //  'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Origin': '*'
-               // 'authorization' : AuthenticationService.createBasicAuthToken(username, password)
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Origin': '*',
+                'authorization' : AuthenticationService.createBasicAuthToken(username, password)
             }
         })
             .then((response) => response.json())

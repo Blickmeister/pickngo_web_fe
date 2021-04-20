@@ -1,6 +1,6 @@
 export const getLoginUrl = 'http://localhost:8090/basicauth';
 
-export const getRolesUrl = 'http://localhost:8090/employeeRole/all';
+export const getRolesUrl = 'http://localhost:8090/role/all';
 
 export const createEmployeeUrl = 'http://localhost:8090/employee/create';
 

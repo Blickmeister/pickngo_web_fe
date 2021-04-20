@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import {Nav, Navbar} from 'react-bootstrap';
 import '../../App.css';
+import AuthenticationService from "../../services/authentication/AuthenticationService";
 
 class NavigationBar extends Component {
 
     render() {
+        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+
         return (
             <Navbar expand="lg" className="main_navbar">
-                <Navbar.Brand>PICKnGO</Navbar.Brand>
+                <Navbar.Brand><Nav.Link href="/" style={{color: 'black'}}>PICKnGO</Nav.Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav style={{ flex: 1, paddingLeft: '1%'}}>
@@ -24,9 +27,14 @@ class NavigationBar extends Component {
                             </Nav.Item>
                         </div>
                         <div className="ml-auto float-right">
-                            <Nav.Item>
-                                <Nav.Link className="btn btn-outline-dark" href="#">Odhlásit se</Nav.Link>
-                            </Nav.Item>
+                            {isUserLoggedIn &&
+                                <Link className="btn btn-outline-primary" to="/logout"
+                                          onClick={AuthenticationService.logout}>Odhlásit se</Link>
+                            }
+                            {!isUserLoggedIn &&
+                            <Link className="btn btn-outline-primary" to="/">
+                                Přihlásit se</Link>
+                            }
                         </div>
                     </Nav>
                 </Navbar.Collapse>

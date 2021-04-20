@@ -17,6 +17,7 @@ class HomeAndLoginPage extends Component {
     componentDidMount() {
         let isUserLoggedIn = AuthenticationService.isUserLoggedIn();
         this.setState({isUserLoggedIn: isUserLoggedIn})
+        console.log(this.state.isUserLoggedIn)
     }
 
 

@@ -8,6 +8,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import RegisterPage from "./pages/administrations/account/RegisterPage";
 import AdministrationPage from "./pages/administrations/AdministrationPage";
+import LogoutComponent from "./components/authentication/LogoutComponent";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                       <Route exact path="/" component={HomeAndLoginPage}/>
                       <Route exact path="/administration" component={AdministrationPage}/>
                       <Route exact path="/account/create" component={RegisterPage}/>
+                      <Route exact path="/logout" component={LogoutComponent}/>
                   </Switch>
               </Layout>
           </div>
