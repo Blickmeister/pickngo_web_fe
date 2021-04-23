@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../styles/Welcome.css';
+import '../../styles/Container.css';
 import AuthenticationService from "../../services/authentication/AuthenticationService";
 
 class WelcomeComponent extends Component {

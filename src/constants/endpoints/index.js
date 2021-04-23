@@ -5,3 +5,19 @@ export const getRolesUrl = 'http://localhost:8090/role/all';
 export const createEmployeeUrl = 'http://localhost:8090/employee/create';
 
 export const createAdminUrl = 'http://localhost:8090/employee/admin/create';
+
+export const getBaguetteOrdersUrl = 'http://localhost:8090/baguetteOrder/all';
+
+export const updateBaguetteOrderUrl = 'http://localhost:8090/baguetteOrder/update/';
+
+export const getBaguetteOrderDetailUrl = 'http://localhost:8090/baguetteOrder/detail/';
+
+export const getAccountUrl = 'http://localhost:8090/employee/all';
+
+export const getAccountDetailUrl = 'http://localhost:8090/employee/detail/';
+
+export const updateAccountUrl = 'http://localhost:8090/employee/update/';
+
+export const removeAccountUrl = 'http://localhost:8090/employee/remove/';
+
+export const getRoleDetailUrl = 'http://localhost:8090/role/detail/';

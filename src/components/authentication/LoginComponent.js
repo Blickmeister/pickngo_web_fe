@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import AuthenticationService from "../../services/authentication/AuthenticationService";
+import '../../styles/Login.css';
+import '../../styles/Container.css';
 
 class LoginComponent extends Component {
     constructor(props) {

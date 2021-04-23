@@ -11,10 +11,9 @@ class AdministrationPage extends Component {
         return (
             <div className="administration-container">
                 <h1>Veškerá správa systému</h1>
-                <h2 className="float-left" style={{paddingTop: '2%'}}>Správa uživatelských účtů:</h2>
                 <div className="admin-item">
-                    <p className="text-body float-left">Registrace nového uživatele:</p>
-                    <Link to="/account/create" className="btn btn-dark float-left">Zde</Link>
+                    <p className="text-body float-left font-weight-bold">Správa uživatelských účtů:</p>
+                    <Link to="/administration/account" className="btn btn-dark float-left">Zde</Link>
                 </div>
             </div>
         )

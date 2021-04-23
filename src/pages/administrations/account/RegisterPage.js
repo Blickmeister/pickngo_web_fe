@@ -50,7 +50,7 @@ class RegisterPage extends Component {
         let json = JSON.stringify(object);
 
         const roleName = data.get("roleName");
-        console.log("role name: " + roleName)
+        console.log("role name: " + roleName);
         // fetch dle role
         if (roleName === 'admin') {
             fetch(createAdminUrl, {
@@ -65,7 +65,7 @@ class RegisterPage extends Component {
             }).then(function (response) {
                 if(response.ok) {
                     alert("Účet byl vytvořen");
-                    window.location = '/';
+                    window.location = '/administration/account';
                 } else {
                     response.json().then(function (res) {
                         alert(res.message)

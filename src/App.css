@@ -4,7 +4,7 @@
 
 .Main-container {
     margin-top: 10px; /* kvůli navbaru */
-    padding: 0px 10px;
+    padding: 0 5px;
     background-color: green;
     text-align: center;
     height: 100%;

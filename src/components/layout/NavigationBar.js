@@ -17,10 +17,10 @@ class NavigationBar extends Component {
                     <Nav style={{ flex: 1, paddingLeft: '1%'}}>
                         <div className="row float-left">
                             <Nav.Item>
-                                <Nav.Link href="#">Příchozí objednávky</Nav.Link>
+                                <Nav.Link href="/order/incoming">Příchozí objednávky</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
-                                <Nav.Link href="#">Historie objednávek</Nav.Link>
+                                <Nav.Link href="/order/history">Historie objednávek</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link href="/administration">Správa systému</Nav.Link>
