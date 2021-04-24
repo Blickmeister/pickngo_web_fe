@@ -9,6 +9,14 @@
 }
 
 .content-container {
-    padding-top: 4%;
     text-align: center;
+    padding-top: 2%;
+}
+
+.container-margin-top {
+    margin-top: 2%;
+}
+
+.container-padding-top {
+    padding-top: 2%;
 }

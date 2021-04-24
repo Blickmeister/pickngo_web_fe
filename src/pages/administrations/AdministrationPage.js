@@ -9,7 +9,7 @@ class AdministrationPage extends Component {
 
     render() {
         return (
-            <div className="administration-container">
+            <div>
                 <h1>Veškerá správa systému</h1>
                 <div className="admin-item">
                     <p className="text-body float-left font-weight-bold">Správa uživatelských účtů:</p>

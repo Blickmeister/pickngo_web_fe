@@ -33,16 +33,16 @@
     background-color: white;
 }
 
-.table-user-information > tbody > tr {
+.table-main-border > tbody > tr {
     border-top: 1px solid rgb(221, 221, 221);
 }
 
-.table-user-information > tbody > tr:first-child {
+.table-main-border > tbody > tr:first-child {
     border-top: 0;
 }
 
 
-.table-user-information > tbody > tr > td {
+.table-main-border > tbody > tr > td {
     border-top: 0;
 }
 .toppad

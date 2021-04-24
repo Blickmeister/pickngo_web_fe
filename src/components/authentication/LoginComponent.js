@@ -12,9 +12,7 @@ class LoginComponent extends Component {
             password: '',
             role: '',
             hasLoginFailed: false,
-            showSuccessMessage: false,
-            message: '',
-            isActive : true,
+            showSuccessMessage: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -49,30 +47,19 @@ class LoginComponent extends Component {
     }
 
     handleDismiss() {
-        this.setState({isActive: false})
+        this.setState({hasLoginFailed: false})
     }
 
     render() {
-        let renderMessage = false;
-        if (this.props.message !== undefined) {
-            renderMessage = true;
-        }
         return (
             <div className="login-container">
                 <h1>Přihlášení</h1>
-                {renderMessage && this.state.isActive &&
-                <div className="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{this.props.message}</strong>
-                    <button onClick={() => this.handleDismiss()} type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>}
 
                 <div className="login-form">
                     {this.state.hasLoginFailed &&
                     <div className="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Holy guacamole!</strong> Zadali jste špatné přihlašovací údaje. Zkuste to znovu.
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <button onClick={() => this.handleDismiss()} type="button" className="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>}
