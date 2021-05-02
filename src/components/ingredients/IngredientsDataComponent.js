@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 class IngredientsDataComponent extends Component {
 
-    header = ["ID ingredience", "Typ ingredience", "Stav", "Název ingredience", "Cena"];
+    header = ["ID ingredience", "Typ ingredience", "Název ingredience", "Cena"];
 
     renderTableHeader() {
         return this.header.map((h, i) => {
@@ -13,17 +12,16 @@ class IngredientsDataComponent extends Component {
                 <th key={i}>{h}</th>
             )
         })
-    }
+    };
 
     renderTableBody() {
         return this.props.data.map((ingredient, index) => {
-            const {id, name, price, ingredientType, state} = ingredient;
+            const {id, name, price, ingredientType} = ingredient;
 
             return (
                 <tr key={index}>
                     <td>ID: {id}</td>
                     <td>Typ: {ingredientType}</td>
-                    <td>{state}</td>
                     <td>
                         <Form className="forms" onSubmit={this.handleSubmit}>
                             <Form.Group controlId="formBasicEmail">
@@ -43,7 +41,7 @@ class IngredientsDataComponent extends Component {
                 </tr>
             )
         })
-    }
+    };
 
     render() {
         let renderTable = this.props.data.length !== 0;
@@ -59,7 +57,7 @@ class IngredientsDataComponent extends Component {
                 }
             </div>
         )
-    }
+    };
 }
 
 export default IngredientsDataComponent;

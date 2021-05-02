@@ -3,7 +3,7 @@ import '../../../styles/Forms.css';
 import {getIngredients,updateIngredient} from "../../../constants/endpoints";
 import IngredientsDataComponent from "../../../components/ingredients/IngredientsDataComponent";
 import Loader from "react-loader-spinner";
-import {Link} from "react-router-dom";
+import AuthenticationService from "../../../services/authentication/AuthenticationService";
 
 
 class IngredientsEditPage extends Component {
@@ -25,24 +25,21 @@ class IngredientsEditPage extends Component {
 
     componentDidMount() {
         this.getData();
-        // získání dat ze serveru každých 10 vteřin
-        setInterval(this.getData, 10000)
     }
 
     getData = () => {
+        const username = AuthenticationService.getLoggedInUserName();
+        const password = AuthenticationService.getLoggedInUserPassword();
         fetch(getIngredients, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'authorization' : AuthenticationService.createBasicAuthToken(username, password)
             }
         })
-            .then((response) => response.json())
-            .then((jsonResponse) => {
-                this.setState({ingredients: jsonResponse, loading: false});
-                console.log("response: " + jsonResponse)
-            }).catch((err) => console.error(err));
+            .then((response) => response.json());
     };
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
@@ -62,13 +59,15 @@ class IngredientsEditPage extends Component {
         if(this.state.nameChanged) urlRequestParam = "?name=" + data.get("name");
         if(this.state.priceChanged) urlRequestParam = "?price=" + data.get("price");
         if(this.state.ingredientTypeChanged) urlRequestParam = "?ingredientType=" + data.get("ingredientType");
-        //tady si myslím, že bude asi ta header jinak, ale nevím jak
+        const username = AuthenticationService.getLoggedInUserName();
+        const password = AuthenticationService.getLoggedInUserPassword();
         fetch(updateIngredient + this.props.match.params.id + urlRequestParam, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'authorization' : AuthenticationService.createBasicAuthToken(username, password)
             }
         })
             .then(function (response) {
