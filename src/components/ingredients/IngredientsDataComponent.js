@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import AuthenticationService from "../../services/authentication/AuthenticationService";
-import {updateIngredient} from "../../constants/endpoints";
+import {updateIngredient,deleteIngredient} from "../../constants/endpoints";
 
 class IngredientsDataComponent extends Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
     header = ["ID ingredience", "Upravitelná data"];
 
@@ -44,10 +45,16 @@ class IngredientsDataComponent extends Component {
                             <Form.Group >
                                 <Form.Control defaultValue={ingredientType.id} name="ingredientType"  placeholder="ID" type="hidden" />
                             </Form.Group>
+                            <p>
                             <Button variant="primary" type="submit">
                                 Upravit ingredienci
                             </Button>
+                            </p>
+
                         </Form>
+                        <p className="forms">
+                            <button className="delete" onClick={() => this.onDelete(ingredient.id)}>Smazat ingredienci</button>
+                        </p>
                     </td>
                 </tr>
             )
@@ -92,6 +99,34 @@ class IngredientsDataComponent extends Component {
             }).catch(function (error) {
             console.error(error);
             alert("Ingredience se nepodařila upravit");
+        });
+
+    };
+
+    onDelete(id) {
+
+        const username = AuthenticationService.getLoggedInUserName();
+        const password = AuthenticationService.getLoggedInUserPassword();
+        fetch(deleteIngredient + id , {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Origin': '*',
+                'authorization' : AuthenticationService.createBasicAuthToken(username, password)
+            }
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    alert("Ingredience byla odstraněna");
+                    window.location = "/administration/ingredients";
+                } else {
+                    console.error(response.message);
+                    alert("Ingredience se nepodařila odstranit");
+                }
+            }).catch(function (error) {
+            console.error(error);
+            alert("Ingredience se nepodařila odstranit");
         });
 
     };
