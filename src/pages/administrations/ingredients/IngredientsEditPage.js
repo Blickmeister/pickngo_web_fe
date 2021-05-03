@@ -10,16 +10,11 @@ class IngredientsEditPage extends Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
             ingredients: [],
             nameChanged: false,
-            priceChanged: false,
-            ingredientTypeChanged: false,
-            loading: true
-
+            priceChanged: false
         }
     }
 
@@ -39,62 +34,22 @@ class IngredientsEditPage extends Component {
                 'authorization' : AuthenticationService.createBasicAuthToken(username, password)
             }
         })
-            .then((response) => response.json());
-    };
-    handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value});
-        console.log("event: " + event.target.value + event.target.name);
-        if(event.target.name === "nazev") {
-            this.setState({nameChanged: true})
-        } else if(event.target.name === "cena") {
-            this.setState({priceChanged: true})
-        }
-    };
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        let urlRequestParam = "";
-        console.log(this.state.nameChanged + this.state.priceChanged);
-        if(this.state.nameChanged) urlRequestParam = "?name=" + data.get("name");
-        if(this.state.priceChanged) urlRequestParam = "?price=" + data.get("price");
-        if(this.state.ingredientTypeChanged) urlRequestParam = "?ingredientType=" + data.get("ingredientType");
-        const username = AuthenticationService.getLoggedInUserName();
-        const password = AuthenticationService.getLoggedInUserPassword();
-        fetch(updateIngredient + this.props.match.params.id + urlRequestParam, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Origin': '*',
-                'authorization' : AuthenticationService.createBasicAuthToken(username, password)
-            }
-        })
-            .then(function (response) {
-                if (response.ok) {
-                    alert("Ingredience byla upravena");
-                    window.location = "/administration/ingredients";
-                } else {
-                    console.error(response.message);
-                    alert("Ingredience se nepodařila upravit");
-                }
-            }).catch(function (error) {
-            console.error(error);
-            alert("Ingredience se nepodařila upravit");
-        });
-
+            .then((response) => response.json())
+            .then((jsonResponse) => {
+                this.setState({ingredients: jsonResponse});
+                console.log("response: " + jsonResponse)
+            }).catch((err) => console.error(err));
     };
 
     render() {
-        const { ingredients, loading } = this.state;
+        const { ingredients } = this.state;
+
         return (
             <div className="tables">
                 <h2>
                     Seznam ingrediencí
                 </h2>
-                {loading
-                    ? <Loader type="Puff" color="#00BFFF" height={100} width={100} timeout={3000}/>
-                    : <IngredientsDataComponent data={ingredients}/>
+                { <IngredientsDataComponent data={ingredients}/>
                 }
             </div>
         );
