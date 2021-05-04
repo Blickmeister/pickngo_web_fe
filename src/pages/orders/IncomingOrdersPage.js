@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {getBaguetteOrdersUrl} from "../../constants/endpoints";
 import IncomingOrdersDataComponent from '../../components/orders/IncomingOrdersDataComponent';
 import Loader from 'react-loader-spinner';
+import AuthenticationService from "../../services/authentication/AuthenticationService";
 
 class IncomingOrdersPage extends Component {
 
@@ -21,12 +22,15 @@ class IncomingOrdersPage extends Component {
     }
 
     getData = () => {
+        const username = AuthenticationService.getLoggedInUserName();
+        const password = AuthenticationService.getLoggedInUserPassword();
         fetch(getBaguetteOrdersUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'authorization' : AuthenticationService.createBasicAuthToken(username, password)
             }
         })
             .then((response) => response.json())

@@ -38,17 +38,21 @@ class IngredientsCreatePage extends Component {
         const data = new FormData(event.target);
 
         let object = {};
-        data.forEach(function (value, key) {
-            object[key] = value;
 
+
+        data.forEach(function (value, key) {
+            if(key == "ingredientTypeId"){
+            }
+            else{object[key] = value;}
+            console.log("Last callback call at index " + key + " with value " + value );
         });
         let json = JSON.stringify(object);
 
-        const ingredientType = data.get("ingredientType");
-        console.log("type name: " + ingredientType);
+        const ingredientType = data.get("ingredientTypeId");
+        console.log(json.toString());
         const username = AuthenticationService.getLoggedInUserName();
         const password = AuthenticationService.getLoggedInUserPassword();
-            fetch(createNewIngredient, {
+            fetch(createNewIngredient + data.get("ingredientTypeId"), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,12 +93,10 @@ class IngredientsCreatePage extends Component {
 
                 <Form.Group>
                     <Form.Label>Typ</Form.Label>
-                    <Form.Control name="ingredientType" as="select" required>
-                        {this.state.allTypes.map((ingredientType, index) => {
+                    <Form.Control name="ingredientTypeId" as="select" required>
+                        {this.state.allTypes.map((ingredientType, stop) => {
                             return (
-                                // poslat ingredientType jako objekt bez uvozovek - ted se posle jako ingredientType: "{"id":1,"name":"Pečivo"}"
-                                // a chceme ingredientType: {"id":1,"name":"Pečivo"}
-                                <option key={index} value={JSON.stringify(ingredientType)}>{ingredientType.name}
+                                <option key={stop} value={ingredientType.id} >{ingredientType.name}
                                 </option>
                             )
                         })}

@@ -19,13 +19,15 @@ class OrderDetailPage extends Component {
 
     componentDidMount() {
         console.log("ID order: " + this.props.match.params.id);
-
+        const username = AuthenticationService.getLoggedInUserName();
+        const password = AuthenticationService.getLoggedInUserPassword();
         fetch(getBaguetteOrderDetailUrl + this.props.match.params.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': true,
                 'Access-Control-Allow-Origin': '*',
+                'authorization': AuthenticationService.createBasicAuthToken(username, password)
             }
         })
             .then((response) => response.json())
