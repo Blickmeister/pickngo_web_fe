@@ -31,3 +31,5 @@ export const deleteIngredient = 'http://localhost:8090/ingredient/remove/';
 export const updateIngredient = 'http://localhost:8090/ingredient/update/';
 
 export const getIngredientType = 'http://localhost:8090/ingredientType/all/';
+
+export const createIngredientType = 'http://localhost:8090/ingredientType/create';
