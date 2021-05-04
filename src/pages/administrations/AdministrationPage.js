@@ -15,6 +15,14 @@ class AdministrationPage extends Component {
                     <p className="text-body float-left font-weight-bold">Správa uživatelských účtů:</p>
                     <Link to="/administration/account" className="btn btn-dark float-left">Zde</Link>
                 </div>
+                <div className="admin-item">
+                    <p className="text-body float-left font-weight-bold">Správa ingrediencí:</p>
+                    <Link to="/administration/ingredients" className="btn btn-dark float-left">Zde</Link>
+                </div>
+                <div className="admin-item">
+                    <p className="text-body float-left font-weight-bold">Přidávání ingrediencí:</p>
+                    <Link to="/administration/ingredients/create" className="btn btn-dark float-left">Zde</Link>
+                </div>
             </div>
         )
     }

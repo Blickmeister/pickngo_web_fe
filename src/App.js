@@ -16,7 +16,9 @@ import OrderDetailPage from "./pages/orders/OrderDetailPage";
 import AuthRouteAdmin from "./components/authentication/AuthRouteAdmin";
 import AccountPage from "./pages/administrations/account/AccountPage";
 import AccountEditPage from "./pages/administrations/account/AccountEditPage";
+import IngredientsEditPage from "./pages/administrations/ingredients/IngredientsEditPage";
 import {NoMatchPage} from "./pages/NoMatchPage";
+import IngredientsCreatePage from "./pages/administrations/ingredients/IngredientsCreatePage";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
                       <AuthRouteAdmin exact path="/administration/account" component={AccountPage}/>
                       <AuthRouteAdmin exact path="/administration/account/edit/:id" component={AccountEditPage}/>
                       <AuthRouteAdmin exact path="/administration/account/create" component={RegisterPage}/>
+                      <AuthRouteAdmin exact path="/administration/ingredients" component={IngredientsEditPage}/>
+                      <AuthRouteAdmin exact path="/administration/ingredients/create" component={IngredientsCreatePage}/>
                       <Route component={NoMatchPage}/>
                   </Switch>
               </Layout>

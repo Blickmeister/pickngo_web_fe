@@ -21,3 +21,13 @@ export const updateAccountUrl = 'http://localhost:8090/employee/update/';
 export const removeAccountUrl = 'http://localhost:8090/employee/remove/';
 
 export const getRoleDetailUrl = 'http://localhost:8090/role/detail/';
+
+export const getIngredients = 'http://localhost:8090/ingredient/all/';
+
+export const createNewIngredient = 'http://localhost:8090/ingredient/create/';
+
+export const deleteIngredient = 'http://localhost:8090/ingredient/remove/';
+
+export const updateIngredient = 'http://localhost:8090/ingredient/update/';
+
+export const getIngredientType = 'http://localhost:8090/ingredientType/all/';

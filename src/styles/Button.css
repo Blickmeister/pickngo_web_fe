@@ -1,3 +1,10 @@
 .button-margin {
     margin: 1%;
 }
+
+.delete {
+    border: 5px solid #ffffff;
+    background-color: #ff0200;
+    color: #ffffff;
+
+}
