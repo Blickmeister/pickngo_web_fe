@@ -41,15 +41,13 @@ class IngredientsCreatePage extends Component {
 
 
         data.forEach(function (value, key) {
-            if(key == "ingredientTypeId"){
+            if(key === "ingredientTypeId"){
             }
             else{object[key] = value;}
             console.log("Last callback call at index " + key + " with value " + value );
         });
         let json = JSON.stringify(object);
 
-        const ingredientType = data.get("ingredientTypeId");
-        console.log(json.toString());
         const username = AuthenticationService.getLoggedInUserName();
         const password = AuthenticationService.getLoggedInUserPassword();
             fetch(createNewIngredient + data.get("ingredientTypeId"), {
@@ -75,7 +73,7 @@ class IngredientsCreatePage extends Component {
             }).catch(function (error) {
                 console.error(error)
             });
-        }
+        };
 
 
     render() {

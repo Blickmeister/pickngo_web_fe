@@ -69,12 +69,12 @@ class OrderDetailPage extends Component {
     };
 
     render() {
-        // TODO
         const {orderData, baguetteItems} = this.state;
         let renderReadyButton = false;
         if (orderData.state === 2) {
             renderReadyButton = true;
         }
+        console.log(this.props.location.toHistoryPage);
         return (
             <div className="container text-center">
                 <h1>Detail objednávky</h1>
@@ -89,7 +89,7 @@ class OrderDetailPage extends Component {
                             {
                                 baguetteItems.map((baguette, index) => {
                                     return (
-                                        <BaguetteDataComponent baguetteData={baguette} index={++index}/>
+                                        <BaguetteDataComponent key={index} baguetteData={baguette} index={++index}/>
                                     )
                                 })
                             }
@@ -101,8 +101,12 @@ class OrderDetailPage extends Component {
                                     <Button className="btn btn-success button-margin float-left"
                                             onClick={() => this.changeOrderState(orderData)}>Připraveno</Button>
                                     }
+                                {this.props.location.toHistoryPage ?
+                                    <Link className="btn btn-primary button-margin float-left" to="/order/history">Zpět na přehled
+                                        objednávek</Link> :
                                     <Link className="btn btn-primary button-margin float-left" to="/order/incoming">Zpět na přehled
                                         objednávek</Link>
+                                }
 
                             </div>
                         </div>

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 class HistoryOrdersDataComponent extends Component {
 
-    // TODO Poznámka nebo čas vyzvednutí? a stav jen pro kontrolu, pak pryc
+    // TODO stav jen pro kontrolu, pak pryc
     header = ["ID objednávky", "Čas objednávky", "Poznámka", "Jméno zákazníka", "Celková cena", "Stav", "Možnosti"];
 
     renderTableHeader() {
@@ -20,7 +20,8 @@ class HistoryOrdersDataComponent extends Component {
 
             // odkaz do Detail page
             const toDetail = {
-                pathname: "/order/detail/" + id
+                pathname: "/order/detail/" + id,
+                toHistoryPage: true
             };
 
             return (

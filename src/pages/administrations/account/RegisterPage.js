@@ -14,7 +14,6 @@ class RegisterPage extends Component {
             username: '',
             password: ''
         };
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -51,15 +50,17 @@ class RegisterPage extends Component {
 
         const roleName = data.get("roleName");
         console.log("role name: " + roleName);
+        const username = AuthenticationService.getLoggedInUserName();
+        const password = AuthenticationService.getLoggedInUserPassword();
         // fetch dle role
         if (roleName === 'admin') {
             fetch(createAdminUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                  //  'Access-Control-Allow-Credentials': true,
+                    'Access-Control-Allow-Credentials': true,
                     'Access-Control-Allow-Origin': '*',
-                   // 'authorization' : AuthenticationService.createBasicAuthToken(username, password)
+                    'authorization' : AuthenticationService.createBasicAuthToken(username, password)
                 },
                 body: json
             }).then(function (response) {
@@ -81,15 +82,16 @@ class RegisterPage extends Component {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    //  'Access-Control-Allow-Credentials': true,
+                      'Access-Control-Allow-Credentials': true,
                     'Access-Control-Allow-Origin': '*',
-                    // 'authorization' : AuthenticationService.createBasicAuthToken(username, password)
+                     'authorization' : AuthenticationService.createBasicAuthToken(username, password)
                 },
                 body: json
             }).then(function (response) {
                 if(response.ok) {
+                    response.json().then((json) => console.log("JSON: " + json.id));
                     alert("Účet byl vytvořen");
-                    window.location = '/';
+                    window.location = '/administration/account';
                 } else {
                     response.json().then(function (res) {
                         alert(res.message)

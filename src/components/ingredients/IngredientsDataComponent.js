@@ -6,7 +6,7 @@ import {updateIngredient,deleteIngredient} from "../../constants/endpoints";
 
 class IngredientsDataComponent extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onDelete = this.onDelete.bind(this);
